@@ -1,14 +1,20 @@
 Característica: Ver información del conductor
   Como pasajero
-  Quiero ver información del conductor antes de abordar
-  Para mayor confianza
+  Quiero ver la información y calificación del conductor
+  Para confiar en la ruta que voy a tomar
 
-  Scenario: Información visible
-    Given selecciono una ruta activa
-    When visualizo los detalles del colectivo
-    Then debo poder ver el nombre, tipo de vehículo y calificaciones del conductor
+  Scenario: Visualización de información del conductor
+    Given selecciono una ruta
+    When accedo a los detalles de la ruta
+    Then puedo ver el nombre, foto y datos del conductor
 
-  Scenario: Información incompleta
-    Given el conductor no ha completado su perfil
-    When visualizo su información
-    Then el sistema debe mostrar solo los datos disponibles y un aviso indicando que el perfil no está completo
+  Scenario: Visualización de calificación
+    Given veo la información del conductor
+    When reviso su perfil
+    Then veo su calificación promedio
+    And el número de comentarios de otros pasajeros
+
+  Scenario: Sin información disponible
+    Given accedo a ver información del conductor
+    When no hay datos disponibles
+    Then se muestra un mensaje indicando que la información no está disponible

@@ -1,14 +1,21 @@
 Característica: Ver paraderos en el mapa
-  Como pasajero
-  Quiero ver en un mapa los paraderos cercanos
-  Para saber dónde tomar el colectivo
+  Como usuario
+  Quiero ver los paraderos disponibles en un mapa
+  Para ubicarme y encontrar el más cercano a mi posición
 
-  Scenario: Visualización de paraderos
-    Given ingreso a la sección de mapa
-    When permito el acceso a mi ubicación
-    Then el sistema debe mostrar los paraderos cercanos en el mapa
+  Scenario: Visualización del mapa
+    Given accedo a la sección de mapas
+    When carga la aplicación
+    Then veo un mapa con los paraderos marcados
 
-  Scenario: Error de ubicación
-    Given no doy acceso a mi ubicación
-    When intento ver el mapa
-    Then el sistema debe mostrar un mensaje indicando que no puede mostrar los paraderos
+  Scenario: Interacción con marcadores
+    Given veo el mapa con paraderos
+    When hago clic en un marcador
+    Then se muestra información del paradero (nombre, ubicación, horarios)
+    And puedo interactuar con él
+
+  Scenario: Ubicación actual
+    Given permito que la app acceda a mi ubicación
+    When cargo el mapa
+    Then veo mi posición actual
+    And puedo ver los paraderos más cercanos

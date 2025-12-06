@@ -1,19 +1,19 @@
 Característica: Navegación Sencilla
-  Como visitante
-  Quiero que la landing page me permita navegar fácilmente entre secciones
-  Para acceder directamente a la sección que me interesa, sin tener que desplazarme por todo el contenido
+  Como usuario de la aplicación
+  Quiero navegar fácilmente entre las principales secciones
+  Para acceder directamente a la funcionalidad que necesito sin complicaciones
 
-  Scenario: Acceso a la información sobre el uso del producto
-    Given un visitante accede al landing page
-    When consulta información sobre el uso de la aplicación
-    Then el landing page lo dirige al contenido que describe como se usa la aplicación
+  Scenario: Acceso mediante bottom navigation
+    Given estoy en la pantalla principal de la aplicación
+    When veo el menú inferior (bottom navigation)
+    Then puedo acceder a las principales secciones (búsqueda, perfil, configuración, etc.)
 
-  Scenario: Acceso a la información sobre las ventajas de la aplicación
-    Given un visitante accede al landing page
-    When busca información sobre las ventajas de la aplicación
-    Then el landing page lo dirige al contenido correspondiente a las ventajas
+  Scenario: Transición fluida entre pantallas
+    Given estoy en una sección de la aplicación
+    When presiono una opción del menú de navegación
+    Then la aplicación me lleva a la pantalla correspondiente sin demoras
 
-  Scenario: Acceso a preguntas frecuentes de los usuarios
-    Given un visitante accede al landing page
-    When busca información para resolver sus dudas sobre la aplicación
-    Then el landing page lo dirige a la sección de preguntas frecuentes
+  Scenario: Indicador de sección activa
+    Given estoy navegando en la aplicación
+    When me encuentro en una sección específica
+    Then el menú de navegación muestra visualmente cuál es la sección activa

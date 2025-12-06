@@ -1,14 +1,22 @@
-Característica: Filtrar paraderos por ubicación
-  Como viajero
-  Quiero filtrar los paraderos por región, provincia, distrito y localidad
-  Para encontrar las opciones más cercanas a mí
+Característica: Filtrar paraderos
+  Como usuario
+  Quiero filtrar paraderos por región, provincia y distrito
+  Para encontrar paraderos específicos de mi zona de interés
 
-  Scenario: Filtrado exitoso
-    Given estoy en la página de búsqueda
-    When selecciono una región y provincia
-    Then los paraderos deben actualizarse según el filtro
+  Scenario: Filtrado por región
+    Given estoy en la lista de paraderos
+    When selecciono filtrar por región
+    And elijo una región específica
+    Then se actualizan los resultados mostrando solo paraderos de esa región
 
-  Scenario: Sin filtros disponibles
-    Given estoy en la página de búsqueda
-    When no hay datos para los filtros seleccionados
-    Then el sistema debe mostrar un mensaje indicando que no hay paraderos disponibles en esa ubicación
+  Scenario: Filtrado múltiple
+    Given accedo a los filtros
+    When selecciono región, provincia y distrito
+    And aplico los filtros
+    Then veo paraderos que coinciden con todos los criterios seleccionados
+
+  Scenario: Limpiar filtros
+    Given tengo filtros activos
+    When presiono limpiar filtros
+    Then se muestran todos los paraderos disponibles
+    And los filtros se restablecen a su estado inicial

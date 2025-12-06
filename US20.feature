@@ -1,14 +1,24 @@
 Característica: Registrar Usuario
-  Como usuario
+  Como nuevo usuario
   Quiero registrarme en la aplicación
-  Para acceder a los servicios que ofrece
+  Para crear una cuenta con mis datos y vehículo
 
   Scenario: Registro exitoso
-    Given completo el formulario de registro con todos los datos requeridos
-    When envío el formulario
-    Then debo recibir una confirmación de que el registro fue exitoso
+    Given soy un nuevo usuario sin cuenta
+    When completo el formulario con mis datos de usuario y vehículo
+    And selecciono registrar
+    Then el sistema crea mi cuenta
+    And me redirige a la pantalla de inicio de sesión
 
   Scenario: Datos incompletos
-    Given no completo todos los campos requeridos
-    When intento registrarme
-    Then el sistema debe indicarme los campos faltantes
+    Given accedo al formulario de registro
+    When no completo todos los campos obligatorios
+    And intento enviar
+    Then el sistema muestra un mensaje de error indicando los campos faltantes
+    And no me permite continuar
+
+  Scenario: Email duplicado
+    Given un usuario intenta registrar con un email que ya existe
+    When completa el formulario y envía
+    Then el sistema muestra un mensaje indicando que el email ya está registrado
+    And no permite completar el registro

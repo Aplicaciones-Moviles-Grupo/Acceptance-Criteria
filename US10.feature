@@ -1,14 +1,25 @@
 Característica: Gestión de Rutas
   Como conductor
-  Quiero crear, editar y eliminar rutas
-  Para mantener mi servicio actualizado
+  Quiero crear, editar y eliminar mis rutas
+  Para mantener mis rutas de transporte actualizadas
 
   Scenario: Crear nueva ruta
-    Given estoy en la sección de rutas
-    When creo una nueva ruta
-    Then debe aparecer en la lista de rutas
+    Given soy un conductor
+    When accedo a la opción crear ruta
+    And completo los datos (origen, destino, horarios, tarifa)
+    And presiono guardar
+    Then la ruta se crea y aparece en mi lista de rutas
 
-  Scenario: Editar o eliminar ruta
-    Given selecciono una ruta existente
-    When la edito o elimino
-    Then los cambios deben reflejarse de inmediato
+  Scenario: Editar ruta existente
+    Given tengo rutas creadas
+    When selecciono una ruta para editar
+    And modifico los datos necesarios
+    And guardo cambios
+    Then la ruta se actualiza en el sistema
+
+  Scenario: Eliminar ruta
+    Given tengo rutas creadas
+    When selecciono eliminar en una ruta
+    And confirmo la eliminación
+    Then la ruta se elimina del sistema
+    And ya no está disponible para pasajeros

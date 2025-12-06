@@ -1,16 +1,24 @@
 Característica: Editar Perfil
   Como usuario
-  Quiero modificar mi información de perfil
-  Para mantener mis datos actualizados
+  Quiero editar mi información personal
+  Para mantener mis datos actualizados en la aplicación
 
-  Scenario: Editar información básica
-    Given el usuario accede a su perfil
-    When cambia sus datos personales
-    Then el sistema guarda los cambios
-    And confirma la actualización exitosa
+  Scenario: Edición exitosa de perfil
+    Given estoy en mi perfil
+    When hago clic en editar
+    And modifico la información deseada
+    And guardo los cambios
+    Then el sistema actualiza mi información en la base de datos
+    And me muestra un mensaje de confirmación
 
-  Scenario: Intenta guardar datos inválidos
-    Given un usuario accede a su perfil
-    When ingresa información no válida
-    Then el sistema muestra un mensaje de error indicando el problema
-    And no guarda la información hasta que sea válida
+  Scenario: Validación de campos
+    Given estoy editando mi perfil
+    When intento guardar con campos obligatorios vacíos
+    Then el sistema muestra un mensaje de error
+    And no me permite guardar los cambios
+
+  Scenario: Sincronización con backend
+    Given edito mi perfil correctamente
+    When guardo los cambios
+    Then el sistema envía la información al backend
+    And actualiza la información en tiempo real
